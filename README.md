@@ -19,5 +19,5 @@ conda activate book-client
 chmod +x docker_build.sh
 ./docker_build.sh
 
-docer run -it -p 8080:8080 --env-file .env book-client
+docker run -it -p 8080:8080 --env-file .env book-client
 ```
