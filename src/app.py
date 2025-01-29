@@ -32,8 +32,10 @@ async def get_books(request: Request,  genre: str = Query(None), title: str = Qu
     try:
         response = requests.get(BOOK_DATA_API)
         response.raise_for_status() 
+        
         if response.status_code == 200:
             books = response.json()
+            filtered_books = books
             if genre:
                 filtered_books = [book for book in books if genre.lower() in book['genre'].lower()]
             if title:
