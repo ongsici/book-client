@@ -30,20 +30,19 @@ async def home(request: Request):
 @app.get("/get_books", response_class=HTMLResponse)
 async def get_books(request: Request,  genre: str = Query(None), title: str = Query(None)):
     try:
-        response = requests.get(BOOK_DATA_API)
+        params = {}
+        if genre:
+            params["genre"] = genre
+        if title:
+            params["title"] = title
+
+
+        response = requests.get(BOOK_DATA_API, params=params)
         response.raise_for_status() 
         
         if response.status_code == 200:
             books = response.json()
-            filtered_books = books
-            if genre:
-                filtered_books = [book for book in books if genre.lower() in book['genre'].lower()]
-            if title:
-                filtered_books = [book for book in filtered_books if title.lower() in book['title'].lower()]
-            if not genre and not title:
-                filtered_books = books  
-
-            return templates.TemplateResponse("results.html", {"request": request, "filtered_books": filtered_books})
+            return templates.TemplateResponse("results.html", {"request": request, "filtered_books": books})
 
     except requests.RequestException as e:
         return {"error": f"An error occurred while requesting data: {e}"}
