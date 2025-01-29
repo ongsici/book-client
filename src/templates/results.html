@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Search Results</h1>
+        <a href="/" class="btn">Back to Search</a>
+
+        {% if filtered_books %}
+            <div class="book-list">
+                {% for book in filtered_books %}
+                    <div class="book-card">
+                        <h3>{{ book.title }}</h3>
+                        <p><strong>Author:</strong> {{ book.author }}</p>
+                        <p><strong>Year:</strong> {{ book.publication_year }}</p>
+                        <p class="genre"><strong>Genre:</strong> {{ book.genre }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No books found matching your criteria.</p>
+        {% endif %}
+
+        
+    </div>
+    
+</body>
+</html>
