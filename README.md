@@ -5,6 +5,10 @@ FastAPI was used to serve the client service. The homepage will allow users to s
 Backend server is hosted on Azure's Container Instance by deploying the Docker image [here](https://github.com/users/ongsici/packages/container/package/book-data).
 Three environment variables were used for this client Docker image - `BOOK_DATA_URL`, `BOOK_DATA_PORT` and `BOOK_DATA_ENDPOINT`.
 
+### Deploy
+
+The Docker image for this client service is [here](https://github.com/users/ongsici/packages/container/package/book-client).
+
 ### Local Installation
 Prepare the .env file with the necessary variables.
 
